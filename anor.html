@@ -54,16 +54,18 @@
         var focus = svg.append("g")
             .style("display", "none");
 
-        d3.csv("https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/ibovespa.csv").then(
+        d3.csv("https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/ibovespa.csv", function (d) { //cuts the decimal part out, and gets the dot out
+            return {
+                date: d3.timeParse("%d.%m.%Y")(d.date), last: d.last.slice(0, -3).split(".").join(""),
+                variation: d.variation.slice(0, -1).split(",").join("."),
+                opening: d.opening.slice(0, -3).split(".").join("")
+            }
+        }).then(
             // Now I can use this dataset:
             function (data) {
                 data.forEach(function (d) {
-
-                d.date= d3.timeParse("%d.%m.%Y")(d.date);
-                d.last= d.last.slice(0, -3).split(".").join("");
-                d.variation= d.variation.slice(0, -1).split(",").join(".");
-                d.opening= d.opening.slice(0, -3).split(".").join("");
-
+                    //d.date = parseDate(d.date);
+                    d.a = +d.last;
                 });
 
 
@@ -95,19 +97,38 @@
                     .attr("d", d3.line()
                         .x(function (d) { return x(d.date) })
                         .y(function (d) { return y(d.last) })
-                    ).on("mouseover", function (d) {
-                        div.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div.html(d.data+ "<br/>" + +d.last)
-                            .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY) + "px");
-                    })
-                    .on("mouseout", function (d) {
-                        div.transition()
-                            .duration(500)
-                            .style("opacity", 0);
-                    });
+                    )
+
+                // append the circle at the intersection               // **********
+                focus.append("circle")                                 // **********
+                    .attr("class", "y")                                // **********
+                    .style("fill", "none")                             // **********
+                    .style("stroke", "blue")                           // **********
+                    .attr("r", 4);                                     // **********
+
+                // append the rectangle to capture mouse               // **********
+                svg.append("rect")                                     // **********
+                    .attr("width", width)                              // **********
+                    .attr("height", height)                            // **********
+                    .style("fill", "none")                             // **********
+                    .style("pointer-events", "all")                    // **********
+                    .on("mouseover", function () { focus.style("display", null); })
+                    .on("mouseout", function () { focus.style("display", "none"); })
+                    .on("mousemove", mousemove);                       // **********
+
+                function mousemove() {                                 // **********
+                    var x0 = x.invert(d3.mouse(this)[0]),              // **********
+                        i = bisectDate(data, x0, 1),                   // **********
+                        d0 = data[i - 1],                              // **********
+                        d1 = data[i],                                  // **********
+                        d = x0 - d0.date > d1.date - x0 ? d1 : d0;     // **********
+
+                    focus.select("circle.y")                           // **********
+                        .attr("transform",                             // **********
+                            "translate(" + x(d.date) + "," +         // **********
+                            y(d.close) + ")");
+                }        // **********
+
 
                 // Add the line
                 /*            svg.append("path")
