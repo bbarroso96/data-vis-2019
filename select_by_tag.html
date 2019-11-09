@@ -14,8 +14,8 @@
 
         // set the dimensions and margins of the graph
         var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-            width = 460 - margin.left - margin.right,
-            height = 400 - margin.top - margin.bottom;
+            width = 1200 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
 
         // append the svg object to the body of the page
         var svg = d3.select("#my_dataviz")
@@ -25,13 +25,15 @@
             .append("g")
             .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
-
         //Read the data
-        d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
+        d3.csv("https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/ibovespa.csv",
 
             // When reading the csv, I must format variables:
-            function (d) {
-                return { date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value }
+            function (d) { //cuts the decimal part out, and gets the dot out
+                return { date: d3.timeParse("%d.%m.%Y")(d.date), last: d.last.slice(0,-3).split(".").join(""),
+                        variation: d.variation.slice(0,-1).split(",").join("."),
+                        opening: d.opening.slice(0,-3).split(".").join("")
+               }
             },
 
             // Now I can use this dataset:
@@ -47,7 +49,10 @@
 
                 // Add Y axis
                 var y = d3.scaleLinear()
-                    .domain([0, d3.max(data, function (d) { return +d.value; })])
+                    .domain([d3.min(data, function(d){ return +d.last}), d3.max(data, function (d) {
+                        console.log(+d.last);
+                        return +d.last;
+                    })])
                     .range([height, 0]);
                 svg.append("g")
                     .call(d3.axisLeft(y));
@@ -55,13 +60,39 @@
                 // Add the line
                 svg.append("path")
                     .datum(data)
+                    .attr("id", "linha")
                     .attr("fill", "none")
-                    .attr("stroke", "steelblue")
+                    .attr("stroke", "green")
+                    .attr("stroke-width", 10)
+                    .attr("d", d3.line()
+                        .x(function (d) { return x(d.date) })
+                        .y(function (d) { return y(d.last) })
+                    )
+
+                    // Add the line
+    /*            svg.append("path")
+                    .datum(data)
+                    .attr("fill", "none")
+                    .attr("stroke", "orange")
                     .attr("stroke-width", 2.5)
                     .attr("d", d3.line()
                         .x(function (d) { return x(d.date) })
-                        .y(function (d) { return y(d.value) })
-                    )
+                        .y(function (d) { return y(d.opening) })
+                    )*/
+
+
+   // create a tooltip
+var tooltip = d3.select("#my_dataviz")
+  .append("div")
+    .style("position", "absolute")
+    .style("visibility", "hidden")
+    .text("I'm a circle!");
+
+//
+d3.select("#linha")
+  .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+  .on("mousemove", function(){return tooltip.style("top", (event.pageY-800)+"px").style("left",(event.pageX-800)+"px");})
+  .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
 
             })
