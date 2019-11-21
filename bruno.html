@@ -2,29 +2,16 @@
 <html>
 <style>
     /* set the CSS */
-
-    .axis path,
-    .axis line {
-        fill: none;
-        shape-rendering: crispEdges;
-    }
-
     #line {
-        fill: none;
-        stroke: steelblue;
-        stroke-width: 3;
+        fill :  none;
+        stroke : green;
+        stroke-width : 4;
     }
-
-    #dot {
-        fill: greenyellow;
-        stroke: green;
-        stroke-width: 1.5px;
-    }
-
-    #dotOver {
-        fill: orange;
-        stroke: orange;
-        stroke-width: 8px;
+    #line_2 {
+        fill :  none;
+        stroke : orange;
+        stroke-width : 4;
+        stroke-dasharray: 10px;
     }
 
     div.tooltip {
@@ -60,10 +47,6 @@
             width = 1200 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-        var dotRadius = 3.2;
-        var xScale;
-        var yScale;
-
         // append the svg object to the body of the page
         var svg = d3.select("#my_dataviz")
             .append("svg")
@@ -86,13 +69,13 @@
         d3.csv("https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/ibovespa.csv").then(
             // Now I can use this dataset:
             function (data) {
+
+
                 data.forEach(function (d) {
-
-                    d.date = d3.timeParse("%d.%m.%Y")(d.date);
-                    d.last = d.last.slice(0, -3).split(".").join("");
-                    d.variation = d.variation.slice(0, -1).split(",").join(".");
-                    d.opening = d.opening.slice(0, -3).split(".").join("");
-
+                d.date= d3.timeParse("%d.%m.%Y")(d.date);
+                d.last= d.last.slice(0, -3).split(".").join("")/10000;
+                d.variation = d.variation.slice(0, -1).split(",").join(".");
+                d.opening= d.opening.slice(0, -3).split(".").join("");
                 });
 
 
@@ -100,20 +83,16 @@
                 var x = d3.scaleTime()
                     .domain(d3.extent(data, function (d) { return d.date; }))
                     .range([0, width]);
-                xScale = x;
-
                 svg.append("g")
                     .attr("transform", "translate(0," + height + ")")
                     .call(d3.axisBottom(x));
 
                 // Add Y axis
                 var y = d3.scaleLinear()
-                    .domain([d3.min(data, function (d) { return +d.last }), d3.max(data, function (d) {
-                        return +d.last;
+                    .domain([d3.min(data, function (d) { return 0 }), d3.max(data, function (d) {
+                        return 12;
                     })])
                     .range([height, 0]);
-                yScale = y;
-
                 svg.append("g")
                     .call(d3.axisLeft(y));
 
@@ -128,7 +107,7 @@
                         div.transition()
                             .duration(200)
                             .style("opacity", .9);
-                        div.html(d.date + "<br/>" + d.last)
+                        div.html(d.data+ "<br/>" + +d.last)
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY) + "px");
                     })
@@ -138,50 +117,54 @@
                             .style("opacity", 0);
                     });
 
-                // Create a data set of points
-                var dataPoints = data.sort(function (a, b) { return Math.abs(b.variation) - Math.abs(a.variation); }).slice(0, 15);
-                console.log(dataPoints);
-                // Mark the points on the graph
-                svg.selectAll("dots").data(dataPoints).enter()
-                    .append("circle")
-                    .attr("id", "dot")
-                    .attr("r", dotRadius)
-                    .attr("cx", function (d) { return x(d.date) })
-                    .attr("cy", function (d) { return y(d.last) })
-                    .on("mouseover", handleMouseOver)
-                    .on("mouseout", handleMouseOut);
+            d3.csv("https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/real_usd.csv").then(
+            // Now I can use this dataset:
+            function (data) {
 
 
-
-            })
-
-        // Create Event Handlers for mouse
-        function handleMouseOver(d, i) {  // Add interactivity
-
-            // Use D3 to select element, change color and size
-            d3.select(this)
-            .attr("id","dotOver")
-            //.attr("r", dotRadius * 2);
-
-            // Specify where to put label of text
-            svg.append("text")
-                .attr("id", "t" + d.last + "-" + i)
-                .attr("x", function () { return xScale(d.date) - 30; })
-                .attr("y", function () { return yScale(d.last) - 15; })
-                .text(function () {
-                    return [d.date, d.last];  // Value of the text
+                data.forEach(function (d) {
+                d.date= d3.timeParse("%d.%m.%Y")(d.date);
+                d.last= d.last.slice(0, -1).split(",").join(".");
+                d.variation = d.variation.slice(0, -1).split(",").join(".");
+                d.opening= d.opening.slice(0, -1).split(",").join(".");
                 });
-        }
 
-        function handleMouseOut(d, i) {
-            // Use D3 to select element, change color back to normal
-            d3.select(this)
-            .attr("id","dot")
-            //.attr("r", dotRadius);
+                // Add the line
+                svg.append("path")
+                    .datum(data)
+                    .attr("id", "line_2")
+                    .attr("d", d3.line()
+                        .x(function (d) { return x(d.date) })
+                        .y(     ((function (d) { return y(d.last - d3.min(data, function (d) { return d.last})) })    )
+                    ).on("mouseover", function (d) {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+                        div.html(d.data+ "<br/>" + +d.last)
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY) + "px");
+                    })
+                    .on("mouseout", function (d) {
+                        div.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    });
 
-            // Select text by id and then remove
-            d3.select("#t" + d.last + "-" + i).remove();  // Remove text location
-        }
+
+            }
+        )
+
+
+
+
+
+
+
+            }
+        )
+
+
+
 
 
     </script>
