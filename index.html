@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    // api => c64935bbcd934978a0dce240247cf564
+    <h1 id="page-title">
+      Data-Vis 2019-2 | Grupo: Anor Neto e Bruno Barroso aka AB Corp
+    </h1>
   </head>
 
   <body>
     <div class="flex-container">
       <!-- Create a div where the graph will take place -->
       <div id="my_dataviz"></div>
-      <div id="side_panel"></div>
+      <div
+        class="card text-white bg-secondary mb-3"
+        style="margin: 0 20px 0 10px ; min-width: 300px"
+      >
+        <div class="card-header">
+          <h5 id="card-header-text" style="margin-bottom: 0px">
+            Trabalhador do Brasil
+          </h5>
+        </div>
+        <div id="card-text" class="card-body">
+          <!--           <div id="card-title-text">
+            <p>Bruno PLACEHOLDER</p>
+          </div> -->
+          <p>
+            O jovem bruno é um exemplo de trablhador do Brasil.<br />
+            Ele gira a economia e o mercado financeiro
+          </p>
+        </div>
+      </div>
     </div>
 
     <script>
-      // Define the div for the tooltip
-
       // set the dimensions and margins of the graph
       var margin = { top: 10, right: 30, bottom: 30, left: 60 },
         width = 1200 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
       //GLOBAL VARiABLES
-      var MAXDATAPOINTS = 20 ;
-      var dotRadius = 3.2;
+      var MAXDATAPOINTS = 20;
+      var dotRadius = 6;
       var xScale;
       var yScale;
 
@@ -38,7 +57,7 @@
       var tooltip = d3
         .select("#my_dataviz")
         .append("div")
-        .attr("class", "tooltip");
+        .attr("id", "tooltip");
 
       //Read the data
 
@@ -64,7 +83,7 @@
           });
 
           // Add X axis Scale--> it is a date format
-          var x = d3
+          xScale = d3
             .scaleTime()
             .domain(
               d3.extent(data, function(d) {
@@ -72,15 +91,14 @@
               })
             )
             .range([0, width]);
-          xScale = x;
 
           svg
             .append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
+            .call(d3.axisBottom(xScale));
 
           // Add Y axis Scale
-          var y = d3
+          yScale = d3
             .scaleLinear()
             .domain([
               d3.min(data, function(d) {
@@ -91,9 +109,8 @@
               })
             ])
             .range([height, 0]);
-          yScale = y;
 
-          svg.append("g").call(d3.axisLeft(y));
+          svg.append("g").call(d3.axisLeft(yScale));
 
           // Add the line
           svg
@@ -105,10 +122,10 @@
               d3
                 .line()
                 .x(function(d) {
-                  return x(d.date);
+                  return xScale(d.date);
                 })
                 .y(function(d) {
-                  return y(d.last);
+                  return yScale(d.last);
                 })
             );
 
@@ -128,35 +145,56 @@
             .attr("class", "dot")
             .attr("r", dotRadius)
             .attr("cx", function(d) {
-              return x(d.date);
+              return xScale(d.date);
             })
             .attr("cy", function(d) {
-              return y(d.last);
+              return yScale(d.last);
             })
             .on("mouseover", handleMouseOver)
-            .on("mouseout", handleMouseOut);
+            .on("mouseout", handleMouseOut)
+            .on("click", handleMouseClick);
         }
       );
 
       // Create Event Handlers for mouse
       function handleMouseOver(d, i) {
+        d3.select(this).attr("r", dotRadius * 2);
         tooltip
+          .style("visibility", "visible")
           .transition()
           .duration(450)
           .style("opacity", "1");
         tooltip
-          .style("top", event.pageY - 85 + "px")
+          .style("top", event.pageY - 70 + "px")
           .style("left", event.pageX - 60 + "px");
-        tooltip.html(`<p>${d.date.toDateString()}<br>${d.last}</p>`);
-        d3.select(this).attr("r", dotRadius * 2);
+        tooltip.html(
+          `<p id="tootltip-text" style="margin-bottom: 0px">${d.date.toDateString()}<br>${
+            d.last
+          }</p>`
+        );
       }
 
       function handleMouseOut(d, i) {
+        d3.select(this).attr("r", dotRadius);
         tooltip
+          .style("visibility", "hidden")
           .transition()
           .duration(450)
           .style("opacity", "0");
-        d3.select(this).attr("r", dotRadius);
+      }
+
+      function handleMouseClick(d) {
+        document.getElementById(
+          "card-header-text"
+        ).innerHTML = `<p>${d.date.toDateString()}`;
+        document.getElementById(
+          "card-text"
+        ).innerHTML = `<p> <span class="card-detail">Data :</span> ${d.date.toDateString()}
+          <br> <span class="card-detail">Pontuação Ibovespa :</span> ${d.last}
+          <br> <span class="card-detail">Variação Diária :</span> ${d.variation}
+        </p>
+        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum<\p>
+        `;
       }
     </script>
   </body>
