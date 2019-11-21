@@ -1,190 +1,163 @@
 <!DOCTYPE html>
 <html>
-<style>
-    /* set the CSS */
-
-    .axis path,
-    .axis line {
-        fill: none;
-        shape-rendering: crispEdges;
-    }
-
-    #line {
-        fill: none;
-        stroke: steelblue;
-        stroke-width: 3;
-    }
-
-    #dot {
-        fill: greenyellow;
-        stroke: green;
-        stroke-width: 1.5px;
-    }
-
-    #dotOver {
-        fill: orange;
-        stroke: orange;
-        stroke-width: 8px;
-    }
-
-    div.tooltip {
-        position: absolute;
-        text-align: center;
-        width: 60px;
-        height: 28px;
-        padding: 2px;
-        font: 12px sans-serif;
-        background: lightsteelblue;
-        border: 0px;
-        border-radius: 8px;
-        pointer-events: none;
-    }
-</style>
-
-<head>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-</head>
+    // api => c64935bbcd934978a0dce240247cf564
+  </head>
 
-<body>
-
-    <!-- Create a div where the graph will take place -->
-    <div id="my_dataviz"></div>
+  <body>
+    <div class="flex-container">
+      <!-- Create a div where the graph will take place -->
+      <div id="my_dataviz"></div>
+      <div id="side_panel"></div>
+    </div>
 
     <script>
+      // Define the div for the tooltip
 
-        // Define the div for the tooltip
+      // set the dimensions and margins of the graph
+      var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+        width = 1200 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+      //GLOBAL VARiABLES
+      var MAXDATAPOINTS = 20 ;
+      var dotRadius = 3.2;
+      var xScale;
+      var yScale;
 
+      // append the svg object to the body of the page
+      var svg = d3
+        .select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        // set the dimensions and margins of the graph
-        var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-            width = 1200 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+      var tooltip = d3
+        .select("#my_dataviz")
+        .append("div")
+        .attr("class", "tooltip");
 
-        var dotRadius = 3.2;
-        var xScale;
-        var yScale;
+      //Read the data
 
-        // append the svg object to the body of the page
-        var svg = d3.select("#my_dataviz")
-            .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+      d3.csv(
+        "https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/ibovespa.csv"
+      ).then(
+        // Now I can use this dataset:
+        function(data) {
+          data.forEach(function(d) {
+            d.date = d3.timeParse("%d.%m.%Y")(d.date);
+            d.last = d.last
+              .slice(0, -3)
+              .split(".")
+              .join("");
+            d.variation = d.variation
+              .slice(0, -1)
+              .split(",")
+              .join(".");
+            d.opening = d.opening
+              .slice(0, -3)
+              .split(".")
+              .join("");
+          });
+
+          // Add X axis Scale--> it is a date format
+          var x = d3
+            .scaleTime()
+            .domain(
+              d3.extent(data, function(d) {
+                return d.date;
+              })
+            )
+            .range([0, width]);
+          xScale = x;
+
+          svg
             .append("g")
-            .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
-        //Read the data
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
 
-        // Define the div for the tooltip
-        var div = d3.select("body").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
+          // Add Y axis Scale
+          var y = d3
+            .scaleLinear()
+            .domain([
+              d3.min(data, function(d) {
+                return +d.last;
+              }),
+              d3.max(data, function(d) {
+                return +d.last;
+              })
+            ])
+            .range([height, 0]);
+          yScale = y;
 
+          svg.append("g").call(d3.axisLeft(y));
 
-        var focus = svg.append("g")
-            .style("display", "none");
+          // Add the line
+          svg
+            .append("path")
+            .datum(data)
+            .attr("id", "line")
+            .attr(
+              "d",
+              d3
+                .line()
+                .x(function(d) {
+                  return x(d.date);
+                })
+                .y(function(d) {
+                  return y(d.last);
+                })
+            );
 
-        d3.csv("https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/ibovespa.csv").then(
-            // Now I can use this dataset:
-            function (data) {
-                data.forEach(function (d) {
-
-                    d.date = d3.timeParse("%d.%m.%Y")(d.date);
-                    d.last = d.last.slice(0, -3).split(".").join("");
-                    d.variation = d.variation.slice(0, -1).split(",").join(".");
-                    d.opening = d.opening.slice(0, -3).split(".").join("");
-
-                });
-
-
-                // Add X axis --> it is a date format
-                var x = d3.scaleTime()
-                    .domain(d3.extent(data, function (d) { return d.date; }))
-                    .range([0, width]);
-                xScale = x;
-
-                svg.append("g")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(d3.axisBottom(x));
-
-                // Add Y axis
-                var y = d3.scaleLinear()
-                    .domain([d3.min(data, function (d) { return +d.last }), d3.max(data, function (d) {
-                        return +d.last;
-                    })])
-                    .range([height, 0]);
-                yScale = y;
-
-                svg.append("g")
-                    .call(d3.axisLeft(y));
-
-                // Add the line
-                svg.append("path")
-                    .datum(data)
-                    .attr("id", "line")
-                    .attr("d", d3.line()
-                        .x(function (d) { return x(d.date) })
-                        .y(function (d) { return y(d.last) })
-                    ).on("mouseover", function (d) {
-                        div.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div.html(d.date + "<br/>" + d.last)
-                            .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY) + "px");
-                    })
-                    .on("mouseout", function (d) {
-                        div.transition()
-                            .duration(500)
-                            .style("opacity", 0);
-                    });
-
-                // Create a data set of points
-                var dataPoints = data.sort(function (a, b) { return Math.abs(b.variation) - Math.abs(a.variation); }).slice(0, 15);
-                console.log(dataPoints);
-                // Mark the points on the graph
-                svg.selectAll("dots").data(dataPoints).enter()
-                    .append("circle")
-                    .attr("id", "dot")
-                    .attr("r", dotRadius)
-                    .attr("cx", function (d) { return x(d.date) })
-                    .attr("cy", function (d) { return y(d.last) })
-                    .on("mouseover", handleMouseOver)
-                    .on("mouseout", handleMouseOut);
-
-
-
+          // Create a data set of points
+          var dataPoints = data
+            .sort(function(a, b) {
+              return Math.abs(b.variation) - Math.abs(a.variation);
             })
-
-        // Create Event Handlers for mouse
-        function handleMouseOver(d, i) {  // Add interactivity
-
-            // Use D3 to select element, change color and size
-            d3.select(this)
-            .attr("id","dotOver")
-            //.attr("r", dotRadius * 2);
-
-            // Specify where to put label of text
-            svg.append("text")
-                .attr("id", "t" + d.last + "-" + i)
-                .attr("x", function () { return xScale(d.date) - 30; })
-                .attr("y", function () { return yScale(d.last) - 15; })
-                .text(function () {
-                    return [d.date, d.last];  // Value of the text
-                });
+            .slice(0, MAXDATAPOINTS);
+          console.log(dataPoints);
+          // Mark the points on the graph
+          svg
+            .selectAll(".dot")
+            .data(dataPoints)
+            .enter()
+            .append("circle")
+            .attr("class", "dot")
+            .attr("r", dotRadius)
+            .attr("cx", function(d) {
+              return x(d.date);
+            })
+            .attr("cy", function(d) {
+              return y(d.last);
+            })
+            .on("mouseover", handleMouseOver)
+            .on("mouseout", handleMouseOut);
         }
+      );
 
-        function handleMouseOut(d, i) {
-            // Use D3 to select element, change color back to normal
-            d3.select(this)
-            .attr("id","dot")
-            //.attr("r", dotRadius);
+      // Create Event Handlers for mouse
+      function handleMouseOver(d, i) {
+        tooltip
+          .transition()
+          .duration(450)
+          .style("opacity", "1");
+        tooltip
+          .style("top", event.pageY - 85 + "px")
+          .style("left", event.pageX - 60 + "px");
+        tooltip.html(`<p>${d.date.toDateString()}<br>${d.last}</p>`);
+        d3.select(this).attr("r", dotRadius * 2);
+      }
 
-            // Select text by id and then remove
-            d3.select("#t" + d.last + "-" + i).remove();  // Remove text location
-        }
-
-
+      function handleMouseOut(d, i) {
+        tooltip
+          .transition()
+          .duration(450)
+          .style("opacity", "0");
+        d3.select(this).attr("r", dotRadius);
+      }
     </script>
-</body>
-
+  </body>
 </html>
