@@ -27,6 +27,14 @@ p{
   shape-rendering: crispEdges;
 }
 
+#line_2 {
+  fill: none;
+  stroke: orange;
+  stroke-width: 1.5;
+  /*stroke-dasharray: 1px;*/
+}
+
+
 #line {
   fill: none;
   stroke: #2a9fd6;

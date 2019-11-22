@@ -1,173 +1,244 @@
 <!DOCTYPE html>
 <html>
-<style>
+  <style>
     /* set the CSS */
     #line {
-        fill :  none;
-        stroke : green;
-        stroke-width : 4;
+      fill: none;
+      stroke: green;
+      stroke-width: 4;
     }
     #line_2 {
-        fill :  none;
-        stroke : orange;
-        stroke-width : 4;
-        stroke-dasharray: 10px;
+      fill: none;
+      stroke: orange;
+      stroke-width: 4;
+      /*stroke-dasharray: 1px;*/
     }
 
     div.tooltip {
-        position: absolute;
-        text-align: center;
-        width: 60px;
-        height: 28px;
-        padding: 2px;
-        font: 12px sans-serif;
-        background: lightsteelblue;
-        border: 0px;
-        border-radius: 8px;
-        pointer-events: none;
+      position: absolute;
+      text-align: center;
+      width: 60px;
+      height: 28px;
+      padding: 2px;
+      font: 12px sans-serif;
+      background: lightsteelblue;
+      border: 0px;
+      border-radius: 8px;
+      pointer-events: none;
     }
-</style>
+  </style>
 
-<head>
+  <head>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-</head>
+  </head>
 
-<body>
-
+  <body>
+    <button id="start">Start Time Animation</button>
+    <button id="reset">Reset</button>
     <!-- Create a div where the graph will take place -->
     <div id="my_dataviz"></div>
 
     <script>
+      // Define the div for the tooltip
 
-        // Define the div for the tooltip
+      // set the dimensions and margins of the graph
+      var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+        width = 1200 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+      // append the svg object to the body of the page
+      var svg = d3
+        .select("#my_dataviz")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      //Read the data
+
+      // Define the div for the tooltip
+      var div = d3
+        .select("body")
+        .append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+      var focus = svg.append("g").style("display", "none");
+
+      d3.csv(
+        "https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/ibovespa.csv"
+      ).then(
+        // Now I can use this dataset:
+        function(data) {
+          data.forEach(function(d) {
+            d.date = d3.timeParse("%d.%m.%Y")(d.date);
+            d.last = d.last
+              .slice(0, -3)
+              .split(".")
+              .join("");
+            d.variation = d.variation
+              .slice(0, -1)
+              .split(",")
+              .join(".");
+            d.opening = d.opening
+              .slice(0, -3)
+              .split(".")
+              .join("");
+          });
 
 
-        // set the dimensions and margins of the graph
-        var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-            width = 1200 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
-
-        // append the svg object to the body of the page
-        var svg = d3.select("#my_dataviz")
-            .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
-        //Read the data
-
-        // Define the div for the tooltip
-        var div = d3.select("body").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
 
 
-        var focus = svg.append("g")
-            .style("display", "none");
+          // Add the line
+          var path = svg
+            .append("path")
+            .datum(data)
+            .attr("id", "line")
+            .attr(
+              "d",
+              d3
+                .line()
+                .x(function(d) {
+                  return x(d.date);
+                })
+                .y(function(d) {
+                  return y(
+                    ((+d.last -
+                      d3.min(data, function(d) {
+                        return +d.last;
+                      })) /
+                      (d3.max(data, function(d) {
+                        return +d.last;
+                      }) -
+                        d3.min(data, function(d) {
+                          return +d.last;
+                        }))) *
+                      10
+                  );
+                })
+            )
+            .on("mouseover", function(d) {
+              div
+                .transition()
+                .duration(200)
+                .style("opacity", 0.9);
+              div
+                .html(d.data + "<br/>" + +d.last)
+                .style("left", d3.event.pageX + "px")
+                .style("top", d3.event.pageY + "px");
+            })
+            .on("mouseout", function(d) {
+              div
+                .transition()
+                .duration(500)
+                .style("opacity", 0);
+            });
 
-        d3.csv("https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/ibovespa.csv").then(
+          var totalLength = path.node().getTotalLength();
+
+          path
+            .attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", -totalLength)
+            .transition() // Call Transition Method
+            .duration(4000) // Set Duration timing (ms)
+            .ease(d3.easeLinear) // Set Easing option
+            .attr("stroke-dashoffset", 0); // Set final value of dash-offset for transition
+          // Set Properties of Dash Array and Dash Offset and initiate Transition
+
+          d3.csv(
+            "https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/real_usd.csv"
+          ).then(
             // Now I can use this dataset:
-            function (data) {
+            function(data) {
+              data.forEach(function(d) {
+                d.date = d3.timeParse("%d.%m.%Y")(d.date);
+                d.last = d.last
+                  .slice(0, -1)
+                  .split(",")
+                  .join(".");
+                d.variation = d.variation
+                  .slice(0, -1)
+                  .split(",")
+                  .join(".");
+                d.opening = d.opening
+                  .slice(0, -1)
+                  .split(",")
+                  .join(".");
+              });
 
+              // Add the line
 
-                data.forEach(function (d) {
-                d.date= d3.timeParse("%d.%m.%Y")(d.date);
-                d.last= d.last.slice(0, -3).split(".").join("")/10000;
-                d.variation = d.variation.slice(0, -1).split(",").join(".");
-                d.opening= d.opening.slice(0, -3).split(".").join("");
-                });
+              d3.select("#start").on("click", function() {
+                var path_2 = svg
+                  .append("path")
+                  .datum(data)
+                  .attr("id", "line_2")
+                  .attr(
+                    "d",
+                    d3
+                      .line()
+                      .x(function(d) {
+                        return x(d.date);
+                      })
+                      .y(function(d) {
+                        return y(
+                          ((+d.last -
+                            d3.min(data, function(d) {
+                              return +d.last;
+                            })) /
+                            (d3.max(data, function(d) {
+                              return +d.last;
+                            }) -
+                              d3.min(data, function(d) {
+                                return +d.last;
+                              }))) *
+                            10
+                        );
+                      })
+                  )
+                  .on("mouseover", function(d) {
+                    div
+                      .transition()
+                      .duration(200)
+                      .style("opacity", 0.9);
+                    div
+                      .html(d.data + "<br/>" + +d.last)
+                      .style("left", d3.event.pageX + "px")
+                      .style("top", d3.event.pageY + "px");
+                  })
+                  .on("mouseout", function(d) {
+                    div
+                      .transition()
+                      .duration(500)
+                      .style("opacity", 0);
+                  });
 
+                var totalLength_2 = +path_2.node().getTotalLength();
 
-                // Add X axis --> it is a date format
-                var x = d3.scaleTime()
-                    .domain(d3.extent(data, function (d) { return d.date; }))
-                    .range([0, width]);
-                svg.append("g")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(d3.axisBottom(x));
+                path_2
+                  .attr("stroke-dasharray", totalLength_2 + " " + totalLength_2)
+                  .attr("stroke-dashoffset", -totalLength_2)
+                  .transition() // Call Transition Method
+                  .delay(0)
+                  .duration(4000) // Set Duration timing (ms)
+                  .ease(d3.easeLinear) // Set Easing option
+                  .attr("stroke-dashoffset", 0)
+                  .on("end", function() {
+                    path_2
+                      .attr("stroke-dasharray", 0)
+                      .transition(3000)
+                      .attr("stroke-dasharray", 2.5);
+                  }); // Set final value of dash-offset for transition
+                // Set Properties of Dash Array and Dash Offset and initiate Transition
+              });
 
-                // Add Y axis
-                var y = d3.scaleLinear()
-                    .domain([d3.min(data, function (d) { return 0 }), d3.max(data, function (d) {
-                        return 12;
-                    })])
-                    .range([height, 0]);
-                svg.append("g")
-                    .call(d3.axisLeft(y));
-
-                // Add the line
-                svg.append("path")
-                    .datum(data)
-                    .attr("id", "line")
-                    .attr("d", d3.line()
-                        .x(function (d) { return x(d.date) })
-                        .y(function (d) { return y(d.last) })
-                    ).on("mouseover", function (d) {
-                        div.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div.html(d.data+ "<br/>" + +d.last)
-                            .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY) + "px");
-                    })
-                    .on("mouseout", function (d) {
-                        div.transition()
-                            .duration(500)
-                            .style("opacity", 0);
-                    });
-
-            d3.csv("https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/real_usd.csv").then(
-            // Now I can use this dataset:
-            function (data) {
-
-
-                data.forEach(function (d) {
-                d.date= d3.timeParse("%d.%m.%Y")(d.date);
-                d.last= d.last.slice(0, -1).split(",").join(".");
-                d.variation = d.variation.slice(0, -1).split(",").join(".");
-                d.opening= d.opening.slice(0, -1).split(",").join(".");
-                });
-
-                // Add the line
-                svg.append("path")
-                    .datum(data)
-                    .attr("id", "line_2")
-                    .attr("d", d3.line()
-                        .x(function (d) { return x(d.date) })
-                        .y(     ((function (d) { return y(d.last - d3.min(data, function (d) { return d.last})) })    )
-                    ).on("mouseover", function (d) {
-                        div.transition()
-                            .duration(200)
-                            .style("opacity", .9);
-                        div.html(d.data+ "<br/>" + +d.last)
-                            .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY) + "px");
-                    })
-                    .on("mouseout", function (d) {
-                        div.transition()
-                            .duration(500)
-                            .style("opacity", 0);
-                    });
-
-
+              d3.select("#reset").on("click", function() {
+                d3.select("#line_2").remove();
+              });
             }
-        )
-
-
-
-
-
-
-
-            }
-        )
-
-
-
-
-
+          );
+        }
+      );
     </script>
-</body>
-
+  </body>
 </html>

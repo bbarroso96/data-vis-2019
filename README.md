@@ -9,4 +9,5 @@
 - [ ] customizar axis -> https://observablehq.com/@d3/styled-axes
 - [ ] pegar noticias de algum lugar ( manual? ou crawl do google?)
 - [ ] gerar word cloud no menu lateral referente as notícias do dia
+- [ ] Desenhar outras linha sempre atras da ibovespa
 - [ ] **DEIXAR BONITO**

@@ -10,6 +10,9 @@
   </head>
 
   <body>
+    <button id="start">Start Time Animation</button>
+    <button id="reset">Reset</button>
+
     <div class="flex-container">
       <!-- Create a div where the graph will take place -->
       <div id="my_dataviz"></div>
@@ -32,6 +35,19 @@
           </p>
         </div>
       </div>
+    </div>
+    <div id="checkbox-container">
+      <form>
+        <label class="checkbox-inline">
+          <input id="option-1" type="checkbox" value="1" />Option 1
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" value="2" />Option 2
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" value="3" />Option 3
+        </label>
+      </form>
     </div>
 
     <script>
@@ -102,10 +118,10 @@
             .scaleLinear()
             .domain([
               d3.min(data, function(d) {
-                return +d.last;
+                return 0;
               }),
               d3.max(data, function(d) {
-                return +d.last;
+                return 10;
               })
             ])
             .range([height, 0]);
@@ -113,7 +129,7 @@
           svg.append("g").call(d3.axisLeft(yScale));
 
           // Add the line
-          svg
+          var path = svg
             .append("path")
             .datum(data)
             .attr("id", "line")
@@ -125,9 +141,32 @@
                   return xScale(d.date);
                 })
                 .y(function(d) {
-                  return yScale(d.last);
-                })
+                        return yScale(
+                          ((+d.last -
+                            d3.min(data, function(d) {
+                              return +d.last;
+                            })) /
+                            (d3.max(data, function(d) {
+                              return +d.last;
+                            }) -
+                              d3.min(data, function(d) {
+                                return +d.last;
+                              }))) *
+                            10
+                        );
+                      })
             );
+
+          var totalLength = path.node().getTotalLength();
+
+          path
+            .attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", -totalLength)
+            .transition() // Call Transition Method
+            .duration(4000) // Set Duration timing (ms)
+            .ease(d3.easeLinear) // Set Easing option
+            .attr("stroke-dashoffset", 0); // Set final value of dash-offset for transition
+          // Set Properties of Dash Array and Dash Offset and initiate Transition
 
           // Create a data set of points
           var dataPoints = data
@@ -148,13 +187,108 @@
               return xScale(d.date);
             })
             .attr("cy", function(d) {
-              return yScale(d.last);
-            })
+                        return yScale(
+                          ((+d.last -
+                            d3.min(data, function(d) {
+                              return +d.last;
+                            })) /
+                            (d3.max(data, function(d) {
+                              return +d.last;
+                            }) -
+                              d3.min(data, function(d) {
+                                return +d.last;
+                              }))) *
+                            10
+                        );
+                      })
             .on("mouseover", handleMouseOver)
             .on("mouseout", handleMouseOut)
             .on("click", handleMouseClick);
+
+
+            d3.csv(
+            "https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/real_usd.csv"
+          ).then(
+            // Now I can use this dataset:
+            function(data) {
+              data.forEach(function(d) {
+                d.date = d3.timeParse("%d.%m.%Y")(d.date);
+                d.last = d.last
+                  .slice(0, -1)
+                  .split(",")
+                  .join(".");
+                d.variation = d.variation
+                  .slice(0, -1)
+                  .split(",")
+                  .join(".");
+                d.opening = d.opening
+                  .slice(0, -1)
+                  .split(",")
+                  .join(".");
+              });
+
+              // Add the line
+
+              d3.select("#option-1").on("click", function() {
+                var path_2 = svg
+                  .append("path")
+                  .datum(data)
+                  .attr("id", "line_2")
+                  .attr(
+                    "d",
+                    d3
+                      .line()
+                      .x(function(d) {
+                        return xScale(d.date);
+                      })
+                      .y(function(d) {
+                        return yScale(
+                          ((+d.last -
+                            d3.min(data, function(d) {
+                              return +d.last;
+                            })) /
+                            (d3.max(data, function(d) {
+                              return +d.last;
+                            }) -
+                              d3.min(data, function(d) {
+                                return +d.last;
+                              }))) *
+                            10
+                        );
+                      })
+                  );
+
+                var totalLength_2 = +path_2.node().getTotalLength();
+
+                path_2
+                  .attr("stroke-dasharray", totalLength_2 + " " + totalLength_2)
+                  .attr("stroke-dashoffset", -totalLength_2)
+                  .transition() // Call Transition Method
+                  .delay(0)
+                  .duration(4000) // Set Duration timing (ms)
+                  .ease(d3.easeLinear) // Set Easing option
+                  .attr("stroke-dashoffset", 0)
+                  .on("end", function() {
+                    path_2
+                      .attr("stroke-dasharray", 0)
+                      .transition(3000)
+                      .attr("stroke-dasharray", 2.5);
+                  }); // Set final value of dash-offset for transition
+                // Set Properties of Dash Array and Dash Offset and initiate Transition
+              });
+
+              d3.select("#reset").on("click", function() {
+                d3.select("#line_2").remove();
+              });
+
+              console.log( document.getElementById("option-1").checked);
+            }
+          );
+
         }
+
       );
+
 
       // Create Event Handlers for mouse
       function handleMouseOver(d, i) {
