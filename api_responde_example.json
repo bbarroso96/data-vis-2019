@@ -1,0 +1,602 @@
+{
+    "kind": "customsearch#search",
+    "url": {
+      "type": "application/json",
+      "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&relatedSite={relatedSite?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+    },
+    "queries": {
+      "request": [
+        {
+          "title": "Google Custom Search - ibovespa after:2019-03-10 before:2019-03-12",
+          "totalResults": "2120",
+          "searchTerms": "ibovespa after:2019-03-10 before:2019-03-12",
+          "count": 10,
+          "startIndex": 1,
+          "inputEncoding": "utf8",
+          "outputEncoding": "utf8",
+          "safe": "off",
+          "cx": "008344922520587658943:kunfp2xcyyo"
+        }
+      ],
+      "nextPage": [
+        {
+          "title": "Google Custom Search - ibovespa after:2019-03-10 before:2019-03-12",
+          "totalResults": "2120",
+          "searchTerms": "ibovespa after:2019-03-10 before:2019-03-12",
+          "count": 10,
+          "startIndex": 11,
+          "inputEncoding": "utf8",
+          "outputEncoding": "utf8",
+          "safe": "off",
+          "cx": "008344922520587658943:kunfp2xcyyo"
+        }
+      ]
+    },
+    "context": {
+      "title": "datavis"
+    },
+    "searchInformation": {
+      "searchTime": 0.205677,
+      "formattedSearchTime": "0,21",
+      "totalResults": "2120",
+      "formattedTotalResults": "2.120"
+    },
+    "items": [
+      {
+        "kind": "customsearch#result",
+        "title": "Ibovespa ganha força após abertura dos EUA e sobe 2% à espera ...",
+        "htmlTitle": "<b>Ibovespa</b> ganha força após abertura dos EUA e sobe 2% à espera ...",
+        "link": "https://www.infomoney.com.br/mercados/ibovespa-ganha-forca-apos-abertura-dos-eua-e-sobe-2-a-espera-de-avancos-na-reforma-da-previdencia/",
+        "displayLink": "www.infomoney.com.br",
+        "snippet": "11 Mar 2019 ... SÃO PAULO – O mercado doméstico inicia a semana com otimismo de olho na \nreforma da Previdência, que volta aos holofotes com o retorno ...",
+        "htmlSnippet": "11 Mar 2019 <b>...</b> SÃO PAULO – O mercado doméstico inicia a semana com otimismo de olho na <br>\nreforma da Previdência, que volta aos holofotes com o retorno&nbsp;...",
+        "cacheId": "osFWkHsD9YcJ",
+        "formattedUrl": "https://www.infomoney.com.br/.../ibovespa-ganha-forca-apos-abertura-dos- eua-e-sobe-2-a-espera-de-avancos-na-reforma-da-previdencia/",
+        "htmlFormattedUrl": "https://www.infomoney.com.br/.../<b>ibovespa</b>-ganha-forca-apos-abertura-dos- eua-e-sobe-2-a-espera-de-avancos-na-reforma-da-previdencia/",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "275",
+              "height": "183",
+              "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTgio2MZLSXiF2ThNp0jITI8gqI_6DYW7IUOzFbKzmDdtcjGMyJCtip9jg"
+            }
+          ],
+          "metatags": [
+            {
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "og:locale": "pt_BR",
+              "og:type": "article",
+              "og:title": "Ibovespa ganha força após abertura dos EUA e sobe 2% à espera de avanços na reforma da Previdência",
+              "og:description": "Índice acelera ganhos com bolsas em Wall Street",
+              "og:url": "https://www.infomoney.com.br/mercados/ibovespa-ganha-forca-apos-abertura-dos-eua-e-sobe-2-a-espera-de-avancos-na-reforma-da-previdencia/",
+              "og:site_name": "InfoMoney",
+              "article:publisher": "https://www.facebook.com/InfoMoney/",
+              "article:tag": "Câmbio",
+              "article:section": "Mercados",
+              "article:published_time": "2019-03-11T07:11:00-03:00",
+              "og:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/ibovespa-alta-grafico-investimento.jpg?fit=900%2C600&quality=75&strip=all",
+              "og:image:secure_url": "https://www.infomoney.com.br/wp-content/uploads/2019/06/ibovespa-alta-grafico-investimento.jpg?fit=900%2C600&quality=75&strip=all",
+              "og:image:width": "900",
+              "og:image:height": "600",
+              "twitter:card": "summary_large_image",
+              "twitter:description": "Índice acelera ganhos com bolsas em Wall Street",
+              "twitter:title": "Ibovespa ganha força após abertura dos EUA e sobe 2% à espera de avanços na reforma da Previdência",
+              "twitter:site": "@infomoney",
+              "twitter:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/ibovespa-alta-grafico-investimento.jpg?fit=900%2C600&quality=75&strip=all",
+              "twitter:creator": "@infomoney",
+              "fb:pages": "204590739576667",
+              "ia:markup_url": "https://www.infomoney.com.br/mercados/ibovespa-ganha-forca-apos-abertura-dos-eua-e-sobe-2-a-espera-de-avancos-na-reforma-da-previdencia/?ia_markup=1",
+              "msapplication-tileimage": "https://www.infomoney.com.br/wp-content/uploads/2019/10/IM-Favicon.png?fit=128%2C128&quality=75&strip=all",
+              "fb:admins": "100001564845270,23205028,100001866890569,100001892083647,678214931",
+              "fb:app_id": "126135914251280"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://www.infomoney.com.br/wp-content/uploads/2019/06/ibovespa-alta-grafico-investimento.jpg?fit=900%2C600&quality=75&strip=all"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "customsearch#result",
+        "title": "Ibovespa Futuro sobe e dólar cai à espera de comissão para ...",
+        "htmlTitle": "<b>Ibovespa</b> Futuro sobe e dólar cai à espera de comissão para ...",
+        "link": "https://www.infomoney.com.br/mercados/ibovespa-futuro-sobe-e-dolar-cai-a-espera-de-comissao-para-debater-previdencia/",
+        "displayLink": "www.infomoney.com.br",
+        "snippet": "11 Mar 2019 ... Neste contexto, às 9h13 (horário de Brasília), o Ibovespa futuro tinha alta de 0,54\n%, a 96.515 pontos. O contrato de dólar futuro com ...",
+        "htmlSnippet": "11 Mar 2019 <b>...</b> Neste contexto, às 9h13 (horário de Brasília), o <b>Ibovespa</b> futuro tinha alta de 0,54<br>\n%, a 96.515 pontos. O contrato de dólar futuro com&nbsp;...",
+        "cacheId": "FGlzkGUSqzcJ",
+        "formattedUrl": "https://www.infomoney.com.br/.../ibovespa-futuro-sobe-e-dolar-cai-a-espera- de-comissao-para-debater-previdencia/",
+        "htmlFormattedUrl": "https://www.infomoney.com.br/.../<b>ibovespa</b>-futuro-sobe-e-dolar-cai-a-espera- de-comissao-para-debater-previdencia/",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "300",
+              "height": "168",
+              "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ9cBcbeOPfY-nlCQ1_UVBfv-7UiQLk028PfCLwvnkoYZXwj0nvGDyxkrM"
+            }
+          ],
+          "metatags": [
+            {
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "og:locale": "pt_BR",
+              "og:type": "article",
+              "og:title": "Ibovespa Futuro sobe e dólar cai à espera de comissão para debater Previdência",
+              "og:description": "Investidores monitoram nova polêmica envolvendo o presidente Jair Bolsonaro",
+              "og:url": "https://www.infomoney.com.br/mercados/ibovespa-futuro-sobe-e-dolar-cai-a-espera-de-comissao-para-debater-previdencia/",
+              "og:site_name": "InfoMoney",
+              "article:publisher": "https://www.facebook.com/InfoMoney/",
+              "article:tag": "Ações",
+              "article:section": "Mercados",
+              "article:published_time": "2019-03-11T06:12:00-03:00",
+              "og:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/analista-assessor-investimentos-mercado-.jpg?fit=900%2C506&quality=75&strip=all",
+              "og:image:secure_url": "https://www.infomoney.com.br/wp-content/uploads/2019/06/analista-assessor-investimentos-mercado-.jpg?fit=900%2C506&quality=75&strip=all",
+              "og:image:width": "900",
+              "og:image:height": "506",
+              "twitter:card": "summary_large_image",
+              "twitter:description": "Investidores monitoram nova polêmica envolvendo o presidente Jair Bolsonaro",
+              "twitter:title": "Ibovespa Futuro sobe e dólar cai à espera de comissão para debater Previdência",
+              "twitter:site": "@infomoney",
+              "twitter:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/analista-assessor-investimentos-mercado-.jpg?fit=900%2C506&quality=75&strip=all",
+              "twitter:creator": "@infomoney",
+              "fb:pages": "204590739576667",
+              "ia:markup_url": "https://www.infomoney.com.br/mercados/ibovespa-futuro-sobe-e-dolar-cai-a-espera-de-comissao-para-debater-previdencia/?ia_markup=1",
+              "msapplication-tileimage": "https://www.infomoney.com.br/wp-content/uploads/2019/10/IM-Favicon.png?fit=128%2C128&quality=75&strip=all",
+              "fb:admins": "100001564845270,23205028,100001866890569,100001892083647,678214931",
+              "fb:app_id": "126135914251280"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://www.infomoney.com.br/wp-content/uploads/2019/06/analista-assessor-investimentos-mercado-.jpg?fit=900%2C506&quality=75&strip=all"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "customsearch#result",
+        "title": "Ibovespa segue exterior de olho no Brexit e segura euforia após ...",
+        "htmlTitle": "<b>Ibovespa</b> segue exterior de olho no Brexit e segura euforia após ...",
+        "link": "https://www.infomoney.com.br/mercados/ibovespa-segue-exterior-de-olho-no-brexit-e-segura-euforia-apos-duas-fortes-altas-dolar-cai/",
+        "displayLink": "www.infomoney.com.br",
+        "snippet": "12 Mar 2019 ... SÃO PAULO – Após a euforia da véspera, o Ibovespa entra no clima de cautela \nglobal e opera com leves perdas atento à votação decisiva do ...",
+        "htmlSnippet": "12 Mar 2019 <b>...</b> SÃO PAULO – Após a euforia da véspera, o <b>Ibovespa</b> entra no clima de cautela <br>\nglobal e opera com leves perdas atento à votação decisiva do&nbsp;...",
+        "cacheId": "dH2NbKI9CXMJ",
+        "formattedUrl": "https://www.infomoney.com.br/.../ibovespa-segue-exterior-de-olho-no-brexit -e-segura-euforia-apos-duas-fortes-altas-dolar-cai/",
+        "htmlFormattedUrl": "https://www.infomoney.com.br/.../<b>ibovespa</b>-segue-exterior-de-olho-no-brexit -e-segura-euforia-apos-duas-fortes-altas-dolar-cai/",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "275",
+              "height": "183",
+              "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTe6cnRIG8zPOcmEZAyVZnluNKP2Tg7ZGLSfie1CuC0JkidgDyeTGmslak"
+            }
+          ],
+          "metatags": [
+            {
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "og:locale": "pt_BR",
+              "og:type": "article",
+              "og:title": "Ibovespa segue exterior de olho no Brexit e segura euforia após duas fortes altas; dólar cai",
+              "og:description": "Índice opera entre perdas e ganhos atento ao cenário externo, enquanto a moeda norte-americana recua após dado de inflação nos EUA",
+              "og:url": "https://www.infomoney.com.br/mercados/ibovespa-segue-exterior-de-olho-no-brexit-e-segura-euforia-apos-duas-fortes-altas-dolar-cai/",
+              "og:site_name": "InfoMoney",
+              "article:publisher": "https://www.facebook.com/InfoMoney/",
+              "article:tag": "Ações",
+              "article:section": "Mercados",
+              "article:published_time": "2019-03-12T07:07:00-03:00",
+              "og:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-56.jpg?fit=900%2C600&quality=75&strip=all",
+              "og:image:secure_url": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-56.jpg?fit=900%2C600&quality=75&strip=all",
+              "og:image:width": "900",
+              "og:image:height": "600",
+              "twitter:card": "summary_large_image",
+              "twitter:description": "Índice opera entre perdas e ganhos atento ao cenário externo, enquanto a moeda norte-americana recua após dado de inflação nos EUA",
+              "twitter:title": "Ibovespa segue exterior de olho no Brexit e segura euforia após duas fortes altas; dólar cai",
+              "twitter:site": "@infomoney",
+              "twitter:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-56.jpg?fit=900%2C600&quality=75&strip=all",
+              "twitter:creator": "@infomoney",
+              "msapplication-tileimage": "https://www.infomoney.com.br/wp-content/uploads/2019/10/IM-Favicon.png?fit=128%2C128&quality=75&strip=all",
+              "fb:admins": "100001564845270,23205028,100001866890569,100001892083647,678214931",
+              "fb:app_id": "126135914251280"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-56.jpg?fit=900%2C600&quality=75&strip=all"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "customsearch#result",
+        "title": "Ibovespa terá dificuldade em renovar máximas no curto prazo",
+        "htmlTitle": "<b>Ibovespa</b> terá dificuldade em renovar máximas no curto prazo",
+        "link": "https://www.infomoney.com.br/mercados/ibovespa-tera-dificuldade-em-renovar-maximas-no-curto-prazo/",
+        "displayLink": "www.infomoney.com.br",
+        "snippet": "11 Mar 2019 ... Analistas consultados acreditam que o principal índice da Bolsa brasileira, o \nIbovespa, deve encontrar dificuldades em renovar máximas no ...",
+        "htmlSnippet": "11 Mar 2019 <b>...</b> Analistas consultados acreditam que o principal índice da Bolsa brasileira, o <br>\n<b>Ibovespa</b>, deve encontrar dificuldades em renovar máximas no&nbsp;...",
+        "cacheId": "VoS7b3JdS9kJ",
+        "formattedUrl": "https://www.infomoney.com.br/.../ibovespa-tera-dificuldade-em-renovar- maximas-no-curto-prazo/",
+        "htmlFormattedUrl": "https://www.infomoney.com.br/.../<b>ibovespa</b>-tera-dificuldade-em-renovar- maximas-no-curto-prazo/",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "275",
+              "height": "183",
+              "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9Sw2weyNfzFEfOTvWHqu5rxvsKGPfJQnoKjHzlwOx7kv-34BHubHGFUc"
+            }
+          ],
+          "metatags": [
+            {
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "og:locale": "pt_BR",
+              "og:type": "article",
+              "og:title": "Ibovespa terá dificuldade em renovar máximas no curto prazo",
+              "og:description": "Investidores acompanharão formação de base de apoio à proposta enviada ao Congresso",
+              "og:url": "https://www.infomoney.com.br/mercados/ibovespa-tera-dificuldade-em-renovar-maximas-no-curto-prazo/",
+              "og:site_name": "InfoMoney",
+              "article:publisher": "https://www.facebook.com/InfoMoney/",
+              "article:tag": "Ações",
+              "article:section": "Mercados",
+              "article:published_time": "2019-03-11T05:55:00-03:00",
+              "og:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-alta-bolsa.jpg?fit=900%2C600&quality=75&strip=all",
+              "og:image:secure_url": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-alta-bolsa.jpg?fit=900%2C600&quality=75&strip=all",
+              "og:image:width": "900",
+              "og:image:height": "600",
+              "twitter:card": "summary_large_image",
+              "twitter:description": "Investidores acompanharão formação de base de apoio à proposta enviada ao Congresso",
+              "twitter:title": "Ibovespa terá dificuldade em renovar máximas no curto prazo",
+              "twitter:site": "@infomoney",
+              "twitter:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-alta-bolsa.jpg?fit=900%2C600&quality=75&strip=all",
+              "twitter:creator": "@infomoney",
+              "fb:pages": "204590739576667",
+              "ia:markup_url": "https://www.infomoney.com.br/mercados/ibovespa-tera-dificuldade-em-renovar-maximas-no-curto-prazo/?ia_markup=1",
+              "msapplication-tileimage": "https://www.infomoney.com.br/wp-content/uploads/2019/10/IM-Favicon.png?fit=128%2C128&quality=75&strip=all",
+              "fb:admins": "100001564845270,23205028,100001866890569,100001892083647,678214931",
+              "fb:app_id": "126135914251280"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-alta-bolsa.jpg?fit=900%2C600&quality=75&strip=all"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "customsearch#result",
+        "title": "Os 5 assuntos que vão agitar os mercados nesta terça-feira",
+        "htmlTitle": "Os 5 assuntos que vão agitar os mercados nesta terça-feira",
+        "link": "https://www.infomoney.com.br/politica/os-5-assuntos-que-vao-agitar-os-mercados-nesta-terca-feira/",
+        "displayLink": "www.infomoney.com.br",
+        "snippet": "12 Mar 2019 ... Política · 5 Assuntos · Ações · Ibovespa. SÃO PAULO – Enquanto os investidores \ndomésticos seguem atentos às articulações do governo ...",
+        "htmlSnippet": "12 Mar 2019 <b>...</b> Política &middot; 5 Assuntos &middot; Ações &middot; <b>Ibovespa</b>. SÃO PAULO – Enquanto os investidores <br>\ndomésticos seguem atentos às articulações do governo&nbsp;...",
+        "cacheId": "T8m-KgSbOPMJ",
+        "formattedUrl": "https://www.infomoney.com.br/.../os-5-assuntos-que-vao-agitar-os-mercados- nesta-terca-feira/",
+        "htmlFormattedUrl": "https://www.infomoney.com.br/.../os-5-assuntos-que-vao-agitar-os-mercados- nesta-terca-feira/",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "271",
+              "height": "186",
+              "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcR31Sf_WnzQitmmrmiX_JIowDvRzTf-IDanAqMFMy_7v__J0OGRD3TaDk24"
+            }
+          ],
+          "metatags": [
+            {
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "og:locale": "pt_BR",
+              "og:type": "article",
+              "og:title": "Os 5 assuntos que vão agitar os mercados nesta terça-feira",
+              "og:description": "Destaque fica para o cenário externo com uma votação importante no Reino Unido sobre o acordo do Brexit",
+              "og:url": "https://www.infomoney.com.br/politica/os-5-assuntos-que-vao-agitar-os-mercados-nesta-terca-feira/",
+              "og:site_name": "InfoMoney",
+              "article:publisher": "https://www.facebook.com/InfoMoney/",
+              "article:tag": "5 Assuntos",
+              "article:section": "Política",
+              "article:published_time": "2019-03-12T05:03:00-03:00",
+              "og:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/theresa-may-9.jpg?fit=691%2C474&quality=75&strip=all",
+              "og:image:secure_url": "https://www.infomoney.com.br/wp-content/uploads/2019/06/theresa-may-9.jpg?fit=691%2C474&quality=75&strip=all",
+              "og:image:width": "691",
+              "og:image:height": "474",
+              "twitter:card": "summary_large_image",
+              "twitter:description": "Destaque fica para o cenário externo com uma votação importante no Reino Unido sobre o acordo do Brexit",
+              "twitter:title": "Os 5 assuntos que vão agitar os mercados nesta terça-feira",
+              "twitter:site": "@infomoney",
+              "twitter:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/theresa-may-9.jpg?fit=691%2C474&quality=75&strip=all",
+              "twitter:creator": "@infomoney",
+              "fb:pages": "204590739576667",
+              "ia:markup_url": "https://www.infomoney.com.br/politica/os-5-assuntos-que-vao-agitar-os-mercados-nesta-terca-feira/?ia_markup=1",
+              "msapplication-tileimage": "https://www.infomoney.com.br/wp-content/uploads/2019/10/IM-Favicon.png?fit=128%2C128&quality=75&strip=all",
+              "fb:admins": "100001564845270,23205028,100001866890569,100001892083647,678214931",
+              "fb:app_id": "126135914251280"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://www.infomoney.com.br/wp-content/uploads/2019/06/theresa-may-9.jpg?fit=691%2C474&quality=75&strip=all"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "customsearch#result",
+        "title": "Ação da Gol cai após acidente da Boeing e Azul salta com compra de",
+        "htmlTitle": "Ação da Gol cai após acidente da Boeing e Azul salta com compra de",
+        "link": "https://www.infomoney.com.br/mercados/acao-da-gol-cai-apos-acidente-da-boeing-e-azul-salta-com-compra-de-ativos-csn-dispara-quase-6-e-bancos-sobem-ate-4/",
+        "displayLink": "www.infomoney.com.br",
+        "snippet": "11 Mar 2019 ... SÃO PAULO – A semana começou animada na Bolsa, com o Ibovespa fechando \nem alta de 2,79%, no melhor pregão desde 2 de janeiro com ...",
+        "htmlSnippet": "11 Mar 2019 <b>...</b> SÃO PAULO – A semana começou animada na Bolsa, com o <b>Ibovespa</b> fechando <br>\nem alta de 2,79%, no melhor pregão desde 2 de janeiro com&nbsp;...",
+        "cacheId": "PpXzIixkYe4J",
+        "formattedUrl": "https://www.infomoney.com.br/.../acao-da-gol-cai-apos-acidente-da-boeing-e -azul-salta-com-compra-de-ativos-csn-dispara-quase-6-e-bancos-s...",
+        "htmlFormattedUrl": "https://www.infomoney.com.br/.../acao-da-gol-cai-apos-acidente-da-boeing-e -azul-salta-com-compra-de-ativos-csn-dispara-quase-6-e-bancos-s...",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "299",
+              "height": "168",
+              "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRjlSrFMC41rTQAbvMgvMCHO2OwPc6kKyd7RMdvg62_0GkUkjq7z2JltbU"
+            }
+          ],
+          "metatags": [
+            {
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "og:locale": "pt_BR",
+              "og:type": "article",
+              "og:title": "Ação da Gol cai após acidente da Boeing e Azul salta com compra de ativos; CSN dispara quase 6% e bancos sobem até 4%",
+              "og:description": "Confira os destaques da B3 na sessão desta segunda-feira (11)",
+              "og:url": "https://www.infomoney.com.br/mercados/acao-da-gol-cai-apos-acidente-da-boeing-e-azul-salta-com-compra-de-ativos-csn-dispara-quase-6-e-bancos-sobem-ate-4/",
+              "og:site_name": "InfoMoney",
+              "article:publisher": "https://www.facebook.com/InfoMoney/",
+              "article:tag": "Ações",
+              "article:section": "Mercados",
+              "article:published_time": "2019-03-11T07:11:00-03:00",
+              "og:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/plataforma-petroleo-2.jpg?fit=900%2C507&quality=75&strip=all",
+              "og:image:secure_url": "https://www.infomoney.com.br/wp-content/uploads/2019/06/plataforma-petroleo-2.jpg?fit=900%2C507&quality=75&strip=all",
+              "og:image:width": "900",
+              "og:image:height": "507",
+              "twitter:card": "summary_large_image",
+              "twitter:description": "Confira os destaques da B3 na sessão desta segunda-feira (11)",
+              "twitter:title": "Ação da Gol cai após acidente da Boeing e Azul salta com compra de ativos; CSN dispara quase 6% e bancos sobem até 4%",
+              "twitter:site": "@infomoney",
+              "twitter:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/plataforma-petroleo-2.jpg?fit=900%2C507&quality=75&strip=all",
+              "twitter:creator": "@infomoney",
+              "fb:pages": "204590739576667",
+              "ia:markup_url": "https://www.infomoney.com.br/mercados/acao-da-gol-cai-apos-acidente-da-boeing-e-azul-salta-com-compra-de-ativos-csn-dispara-quase-6-e-bancos-sobem-ate-4/?ia_markup=1",
+              "msapplication-tileimage": "https://www.infomoney.com.br/wp-content/uploads/2019/10/IM-Favicon.png?fit=128%2C128&quality=75&strip=all",
+              "fb:admins": "100001564845270,23205028,100001866890569,100001892083647,678214931",
+              "fb:app_id": "126135914251280"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://www.infomoney.com.br/wp-content/uploads/2019/06/plataforma-petroleo-2.jpg?fit=900%2C507&quality=75&strip=all"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "customsearch#result",
+        "title": "Os melhores fundos de ações e multimercados de fevereiro",
+        "htmlTitle": "Os melhores fundos de ações e multimercados de fevereiro",
+        "link": "https://www.infomoney.com.br/onde-investir/os-melhores-fundos-de-acoes-e-multimercados-de-fevereiro/",
+        "displayLink": "www.infomoney.com.br",
+        "snippet": "11 Mar 2019 ... Apesar da queda de 1,86% do Ibovespa, alguns fundos conseguiram se \ndestacar e apresentar ganhos de até 8,51%",
+        "htmlSnippet": "11 Mar 2019 <b>...</b> Apesar da queda de 1,86% do <b>Ibovespa</b>, alguns fundos conseguiram se <br>\ndestacar e apresentar ganhos de até 8,51%",
+        "cacheId": "9mtkzdjkgGkJ",
+        "formattedUrl": "https://www.infomoney.com.br/.../os-melhores-fundos-de-acoes-e- multimercados-de-fevereiro/",
+        "htmlFormattedUrl": "https://www.infomoney.com.br/.../os-melhores-fundos-de-acoes-e- multimercados-de-fevereiro/",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "275",
+              "height": "183",
+              "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR9UnBjatHNxmz-n6f7d7mqC4DkTX6zTZ1Hg9WvXVfkloAI-bL-MjuFUPE"
+            }
+          ],
+          "metatags": [
+            {
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "og:locale": "pt_BR",
+              "og:type": "article",
+              "og:title": "Os melhores fundos de ações e multimercados de fevereiro",
+              "og:description": "Apesar da queda de 1,86% do Ibovespa, alguns fundos conseguiram se destacar e apresentar ganhos de até 8,51%",
+              "og:url": "https://www.infomoney.com.br/onde-investir/os-melhores-fundos-de-acoes-e-multimercados-de-fevereiro/",
+              "og:site_name": "InfoMoney",
+              "article:publisher": "https://www.facebook.com/InfoMoney/",
+              "article:tag": "Ações",
+              "article:section": "Onde Investir",
+              "article:published_time": "2019-03-11T13:55:00-03:00",
+              "article:modified_time": "2019-09-30T12:04:16-03:00",
+              "og:updated_time": "2019-09-30T12:04:16-03:00",
+              "og:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-bolsa-2.jpg?fit=900%2C601&quality=75&strip=all",
+              "og:image:secure_url": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-bolsa-2.jpg?fit=900%2C601&quality=75&strip=all",
+              "og:image:width": "900",
+              "og:image:height": "601",
+              "twitter:card": "summary_large_image",
+              "twitter:description": "Apesar da queda de 1,86% do Ibovespa, alguns fundos conseguiram se destacar e apresentar ganhos de até 8,51%",
+              "twitter:title": "Os melhores fundos de ações e multimercados de fevereiro",
+              "twitter:site": "@infomoney",
+              "twitter:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-bolsa-2.jpg?fit=900%2C601&quality=75&strip=all",
+              "twitter:creator": "@infomoney",
+              "fb:pages": "204590739576667",
+              "ia:markup_url": "https://www.infomoney.com.br/onde-investir/os-melhores-fundos-de-acoes-e-multimercados-de-fevereiro/?ia_markup=1",
+              "msapplication-tileimage": "https://www.infomoney.com.br/wp-content/uploads/2019/10/IM-Favicon.png?fit=128%2C128&quality=75&strip=all",
+              "fb:admins": "100001564845270,23205028,100001866890569,100001892083647,678214931",
+              "fb:app_id": "126135914251280"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://www.infomoney.com.br/wp-content/uploads/2019/06/acoes-bolsa-2.jpg?fit=900%2C601&quality=75&strip=all"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "customsearch#result",
+        "title": "Bolsa perde uma hora e volta a funcionar no horário regular, das ...",
+        "htmlTitle": "Bolsa perde uma hora e volta a funcionar no horário regular, das ...",
+        "link": "https://economia.uol.com.br/cotacoes/noticias/redacao/2019/03/11/bolsa-horario-funcionamento.htm",
+        "displayLink": "economia.uol.com.br",
+        "snippet": "11 Mar 2019 ... O horário de negociação de ações na Bolsa muda a partir de hoje, com o \nIbovespa, principal índice da Bolsa brasileira, voltando a operar das ...",
+        "htmlSnippet": "11 Mar 2019 <b>...</b> O horário de negociação de ações na Bolsa muda a partir de hoje, com o <br>\n<b>Ibovespa</b>, principal índice da Bolsa brasileira, voltando a operar das&nbsp;...",
+        "cacheId": "GyAABqk16DMJ",
+        "formattedUrl": "https://economia.uol.com.br/.../bolsa-horario-funcionamento.htm",
+        "htmlFormattedUrl": "https://economia.uol.com.br/.../bolsa-horario-funcionamento.htm",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "322",
+              "height": "157",
+              "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRDNLen9u7e9VTroU_mz75jdwutTtOqKceTrVD1Z9eaPaxbOI8-6LbAEKI"
+            }
+          ],
+          "metatags": [
+            {
+              "fb:pages": "124493634232128",
+              "referrer": "always",
+              "viewport": "width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0,maximum-scale=10.0",
+              "format-detection": "telephone=no",
+              "p:domain_verify": "iJ7w3DGFkgB03wl82ITt6M5nRz6orofQfPB1XWpvQ04",
+              "msapplication-tap-highlight": "no",
+              "fb:app_id": "190329594333794",
+              "og:title": "Bolsa perde uma hora e volta a funcionar no horário regular, das 10h às 17h",
+              "og:description": "O horário de negociação de ações na Bolsa muda a partir de hoje, com o Ibovespa, principal índice da Bolsa brasileira, voltando a operar das 10h às 17h.Com a mudan",
+              "og:image": "https://conteudo.imguol.com.br/c/noticias/54/2017/01/02/economia-grafico-real-moeda-bolsa-bolsas-de-valores-bovespa-1483358582545_v2_615x300.jpg",
+              "og:image:width": "615",
+              "og:image:height": "300",
+              "og:url": "https://economia.uol.com.br/cotacoes/noticias/redacao/2019/03/11/bolsa-horario-funcionamento.htm",
+              "og:type": "article",
+              "og:locale": "pt_BR",
+              "article:publisher": "https://www.facebook.com/UOL",
+              "twitter:title": "Bolsa perde uma hora e volta a funcionar no horário regular, das 10h às 17h",
+              "twitter:description": "O horário de negociação de ações na Bolsa muda a partir de hoje, com o Ibovespa, prin...",
+              "twitter:image": "https://conteudo.imguol.com.br/c/noticias/54/2017/01/02/economia-grafico-real-moeda-bolsa-bolsas-de-valores-bovespa-1483358582545_v2_615x300.jpg",
+              "twitter:card": "summary_large_image",
+              "twitter:site": "UOLEconomia @UOL",
+              "ia:rules_url": "https://economia.uol.com.br/cotacoes/noticias/redacao/2019/03/11/bolsa-horario-funcionamento.htm?loadComponent=rule-generator&data=%7B%22mediaId%22%3A%2269b4c5ae6c7e4d715fba4f714baf2c9220190308%22%2C%22collection%22%3A%22Cota%C3%A7%C3%B5es%22%2C%22tags%22%3A%2213272%2C22373%2C35976%2C78406%2C13228%22%2C%22central%22%3A%22economia%22%2C%22channel%22%3A%22cotacoes%22%2C%22publicationDate%22%3A%2220190311040000%22%2C%22heroImage%22%3Atrue%2C%22author%22%3A%7B%22name%22%3A%22do%20UOL%22%2C%22image%22%3Anull%7D%7D"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://conteudo.imguol.com.br/c/noticias/54/2017/01/02/economia-grafico-real-moeda-bolsa-bolsas-de-valores-bovespa-1483358582545_v2_615x300.jpg"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "customsearch#result",
+        "title": "Acordo Azul-Avianca é positivo e ações podem subir 35%, diz ...",
+        "htmlTitle": "Acordo Azul-Avianca é positivo e ações podem subir 35%, diz ...",
+        "link": "https://www.infomoney.com.br/onde-investir/acordo-azul-avianca-e-positivo-e-acoes-podem-subir-35-diz-bradesco-bbi/",
+        "displayLink": "www.infomoney.com.br",
+        "snippet": "11 Mar 2019 ... Ibovespa. 106.751 pts. -1,49% · DÓLAR. R$ 4,17. +0,58% · BITCOIN. R$ 36.992. \n+0,64% · IFIX. 2.828 pts. -0,03% · MGLU3. R$ 43,40. -3,60%.",
+        "htmlSnippet": "11 Mar 2019 <b>...</b> <b>Ibovespa</b>. 106.751 pts. -1,49% &middot; DÓLAR. R$ 4,17. +0,58% &middot; BITCOIN. R$ 36.992. <br>\n+0,64% &middot; IFIX. 2.828 pts. -0,03% &middot; MGLU3. R$ 43,40. -3,60%.",
+        "cacheId": "dbYEwzdEx6gJ",
+        "formattedUrl": "https://www.infomoney.com.br/.../acordo-azul-avianca-e-positivo-e-acoes- podem-subir-35-diz-bradesco-bbi/",
+        "htmlFormattedUrl": "https://www.infomoney.com.br/.../acordo-azul-avianca-e-positivo-e-acoes- podem-subir-35-diz-bradesco-bbi/",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "277",
+              "height": "182",
+              "src": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS4jzpnotLWPv9QaO-FgTvYfHRtg6nFafq-8PEGuRefGBC86h3ZcmYbXDo"
+            }
+          ],
+          "metatags": [
+            {
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "og:locale": "pt_BR",
+              "og:type": "article",
+              "og:title": "Acordo Azul-Avianca é positivo e ações podem subir 35%, diz Bradesco BBI",
+              "og:description": "Analistas têm recomendação de compra e estimam preço-alvo de R$ 50 por ação",
+              "og:url": "https://www.infomoney.com.br/onde-investir/acordo-azul-avianca-e-positivo-e-acoes-podem-subir-35-diz-bradesco-bbi/",
+              "og:site_name": "InfoMoney",
+              "article:publisher": "https://www.facebook.com/InfoMoney/",
+              "article:tag": "Avianca",
+              "article:section": "Onde Investir",
+              "article:published_time": "2019-03-11T11:42:00-03:00",
+              "og:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/comissarios-de-bordo-azul.jpg?fit=875%2C576&quality=75&strip=all",
+              "og:image:secure_url": "https://www.infomoney.com.br/wp-content/uploads/2019/06/comissarios-de-bordo-azul.jpg?fit=875%2C576&quality=75&strip=all",
+              "og:image:width": "875",
+              "og:image:height": "576",
+              "twitter:card": "summary_large_image",
+              "twitter:description": "Analistas têm recomendação de compra e estimam preço-alvo de R$ 50 por ação",
+              "twitter:title": "Acordo Azul-Avianca é positivo e ações podem subir 35%, diz Bradesco BBI",
+              "twitter:site": "@infomoney",
+              "twitter:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/comissarios-de-bordo-azul.jpg?fit=875%2C576&quality=75&strip=all",
+              "twitter:creator": "@infomoney",
+              "fb:pages": "204590739576667",
+              "ia:markup_url": "https://www.infomoney.com.br/onde-investir/acordo-azul-avianca-e-positivo-e-acoes-podem-subir-35-diz-bradesco-bbi/?ia_markup=1",
+              "msapplication-tileimage": "https://www.infomoney.com.br/wp-content/uploads/2019/10/IM-Favicon.png?fit=128%2C128&quality=75&strip=all",
+              "fb:admins": "100001564845270,23205028,100001866890569,100001892083647,678214931",
+              "fb:app_id": "126135914251280"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://www.infomoney.com.br/wp-content/uploads/2019/06/comissarios-de-bordo-azul.jpg?fit=875%2C576&quality=75&strip=all"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "customsearch#result",
+        "title": "JPMorgan diz que 'ciclo virtuoso' sustenta otimismo com Brasil e ...",
+        "htmlTitle": "JPMorgan diz que &#39;ciclo virtuoso&#39; sustenta otimismo com Brasil e ...",
+        "link": "https://www.infomoney.com.br/mercados/jpmorgan-diz-que-ciclo-virtuoso-sustenta-otimismo-com-brasil-e-destaca-acoes-preferidas/",
+        "displayLink": "www.infomoney.com.br",
+        "snippet": "12 Mar 2019 ... O banco reiterou sua recomendação overweight para as ações brasileiras e \nestima que o Ibovespa encerrará o ano a 105.900 pontos, ...",
+        "htmlSnippet": "12 Mar 2019 <b>...</b> O banco reiterou sua recomendação overweight para as ações brasileiras e <br>\nestima que o <b>Ibovespa</b> encerrará o ano a 105.900 pontos,&nbsp;...",
+        "cacheId": "PnSZs52wjAUJ",
+        "formattedUrl": "https://www.infomoney.com.br/.../jpmorgan-diz-que-ciclo-virtuoso-sustenta- otimismo-com-brasil-e-destaca-acoes-preferidas/",
+        "htmlFormattedUrl": "https://www.infomoney.com.br/.../jpmorgan-diz-que-ciclo-virtuoso-sustenta- otimismo-com-brasil-e-destaca-acoes-preferidas/",
+        "pagemap": {
+          "cse_thumbnail": [
+            {
+              "width": "306",
+              "height": "165",
+              "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTcsRTdQcvP1V9STYiQbFBTybJeKh-Y54tqeibgbR4a6HvdKY4bNI0V8D8"
+            }
+          ],
+          "metatags": [
+            {
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "og:locale": "pt_BR",
+              "og:type": "article",
+              "og:title": "JPMorgan diz que 'ciclo virtuoso' sustenta otimismo com Brasil e destaca ações preferidas",
+              "og:description": "\"Vemos basicamente um ciclo virtuoso acontecendo no Brasil, onde você tem uma política fiscal mais apertada e uma política monetária mais relaxada\", disse a estrategista em ações para a América Latina, Emy Shayo",
+              "og:url": "https://www.infomoney.com.br/mercados/jpmorgan-diz-que-ciclo-virtuoso-sustenta-otimismo-com-brasil-e-destaca-acoes-preferidas/",
+              "og:site_name": "InfoMoney",
+              "article:publisher": "https://www.facebook.com/InfoMoney/",
+              "article:tag": "Bolsas",
+              "article:section": "Mercados",
+              "article:published_time": "2019-03-12T09:05:00-03:00",
+              "og:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/bandeira-brasil.jpg?fit=900%2C486&quality=75&strip=all",
+              "og:image:secure_url": "https://www.infomoney.com.br/wp-content/uploads/2019/06/bandeira-brasil.jpg?fit=900%2C486&quality=75&strip=all",
+              "og:image:width": "900",
+              "og:image:height": "486",
+              "twitter:card": "summary_large_image",
+              "twitter:description": "\"Vemos basicamente um ciclo virtuoso acontecendo no Brasil, onde você tem uma política fiscal mais apertada e uma política monetária mais relaxada\", disse a estrategista em ações para a América Latina, Emy Shayo",
+              "twitter:title": "JPMorgan diz que 'ciclo virtuoso' sustenta otimismo com Brasil e destaca ações preferidas",
+              "twitter:site": "@infomoney",
+              "twitter:image": "https://www.infomoney.com.br/wp-content/uploads/2019/06/bandeira-brasil.jpg?fit=900%2C486&quality=75&strip=all",
+              "twitter:creator": "@infomoney",
+              "fb:pages": "204590739576667",
+              "ia:markup_url": "https://www.infomoney.com.br/mercados/jpmorgan-diz-que-ciclo-virtuoso-sustenta-otimismo-com-brasil-e-destaca-acoes-preferidas/?ia_markup=1",
+              "msapplication-tileimage": "https://www.infomoney.com.br/wp-content/uploads/2019/10/IM-Favicon.png?fit=128%2C128&quality=75&strip=all",
+              "fb:admins": "100001564845270,23205028,100001866890569,100001892083647,678214931",
+              "fb:app_id": "126135914251280"
+            }
+          ],
+          "cse_image": [
+            {
+              "src": "https://www.infomoney.com.br/wp-content/uploads/2019/06/bandeira-brasil.jpg?fit=900%2C486&quality=75&strip=all"
+            }
+          ]
+        }
+      }
+    ]
+  }

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://raw.githubusercontent.com/anorneto/data-vis-2019/master/scripts/search.js"></script>
+    <script src="search.js"></script>
     <h1 id="page-title">
       Data-Vis 2019-2 | Grupo: Anor Neto e Bruno Barroso aka AB Corp
     </h1>
@@ -36,6 +36,7 @@
             Ele gira a economia e o mercado financeiro
           </p>
         </div>
+        <div id="card-search"></div>
       </div>
     </div>
     <div id="checkbox-container">
@@ -51,7 +52,7 @@
         </label>
       </form>
     </div>
-    <button onclick="search('ibovespa')">Fazer requisição</button>
+    <button onclick="search('ibovespa')">Testar Pesquisa Ibovespa</button>
 
     <script>
       // set the dimensions and margins of the graph
@@ -144,20 +145,20 @@
                   return xScale(d.date);
                 })
                 .y(function(d) {
-                        return yScale(
-                          ((+d.last -
-                            d3.min(data, function(d) {
-                              return +d.last;
-                            })) /
-                            (d3.max(data, function(d) {
-                              return +d.last;
-                            }) -
-                              d3.min(data, function(d) {
-                                return +d.last;
-                              }))) *
-                            10
-                        );
-                      })
+                  return yScale(
+                    ((+d.last -
+                      d3.min(data, function(d) {
+                        return +d.last;
+                      })) /
+                      (d3.max(data, function(d) {
+                        return +d.last;
+                      }) -
+                        d3.min(data, function(d) {
+                          return +d.last;
+                        }))) *
+                      10
+                  );
+                })
             );
 
           var totalLength = path.node().getTotalLength();
@@ -177,7 +178,6 @@
               return Math.abs(b.variation) - Math.abs(a.variation);
             })
             .slice(0, MAXDATAPOINTS);
-          console.log(dataPoints);
           // Mark the points on the graph
           svg
             .selectAll(".dot")
@@ -190,26 +190,25 @@
               return xScale(d.date);
             })
             .attr("cy", function(d) {
-                        return yScale(
-                          ((+d.last -
-                            d3.min(data, function(d) {
-                              return +d.last;
-                            })) /
-                            (d3.max(data, function(d) {
-                              return +d.last;
-                            }) -
-                              d3.min(data, function(d) {
-                                return +d.last;
-                              }))) *
-                            10
-                        );
-                      })
+              return yScale(
+                ((+d.last -
+                  d3.min(data, function(d) {
+                    return +d.last;
+                  })) /
+                  (d3.max(data, function(d) {
+                    return +d.last;
+                  }) -
+                    d3.min(data, function(d) {
+                      return +d.last;
+                    }))) *
+                  10
+              );
+            })
             .on("mouseover", handleMouseOver)
             .on("mouseout", handleMouseOut)
             .on("click", handleMouseClick);
 
-
-            d3.csv(
+          d3.csv(
             "https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/real_usd.csv"
           ).then(
             // Now I can use this dataset:
@@ -284,14 +283,11 @@
                 d3.select("#line_2").remove();
               });
 
-              console.log( document.getElementById("option-1").checked);
+              console.log(document.getElementById("option-1").checked);
             }
           );
-
         }
-
       );
-
 
       // Create Event Handlers for mouse
       function handleMouseOver(d, i) {
@@ -327,11 +323,25 @@
         document.getElementById(
           "card-text"
         ).innerHTML = `<p> <span class="card-detail">Data :</span> ${d.date.toDateString()}
-          <br> <span class="card-detail">Pontuação Ibovespa :</span> ${d.last}
-          <br> <span class="card-detail">Variação Diária :</span> ${d.variation}
-        </p>
-        <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum<\p>
-        `;
+                    <br> <span class="card-detail">Pontuação Ibovespa :</span> ${
+                      d.last
+                    }
+                    <br> <span class="card-detail">Variação Diária :</span> ${
+                      d.variation
+                    }
+                    </p>
+                    `;
+
+        search("ibovespa after:2019-03-21 before:2019-03-23", d.date).then(
+          function(jsonParsed) {
+            console.log(jsonParsed);
+            document.getElementById(
+              "card-text"
+            ).innerHTML += `<p></p>
+                            <p>${jsonParsed.items[0].title}</p>
+                            <p> Link : ${jsonParsed.items[0].link}</p>`;
+          }
+        );
       }
     </script>
   </body>

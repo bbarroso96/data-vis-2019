@@ -79,6 +79,11 @@ p{
   font-size: 40;
 }
 
+#card-search{
+  font-size: 14px;
+  text-align: start;
+}
+
 .card-detail{
   font-weight: 600;
 }
