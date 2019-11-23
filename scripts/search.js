@@ -1,11 +1,11 @@
 //<script async src="https://cse.google.com/cse.js?cx=008344922520587658943:kunfp2xcyyo"></script>
 
 function search(querryItem) {
-  querryItem = Ibovespa;
   var url = `https://cse.google.com/cse.js?cx=008344922520587658943:kunfp2xcyyo&?q=${querryItem}`;
 
   const xhttp = new XMLHttpRequest();
   xhttp.open("GET", url, true);
+
 
   xhttp.onreadystatechange = function() {
     //Função a ser chamada quando a requisição retornar do servidor
