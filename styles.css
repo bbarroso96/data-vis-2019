@@ -75,15 +75,45 @@ p{
   margin: 0;
 }
 
-#card-text{
-  font-size: 40;
-}
-
-#card-search{
-  font-size: 14px;
-  text-align: start;
-}
 
 .card-detail{
   font-weight: 600;
+}
+
+#data-last-punctuation{
+  color: lightsteelblue;
+}
+
+#positive-variation {
+  color: lightgreen;
+}
+
+#negative-variation{
+  color: lightsalmon;
+}
+
+#search-item{
+  border-top: 1px solid rgba(255,255,255,0.325);
+  border-bottom: 1px solid rgba(255,255,255,0.325);
+
+}
+
+.search-title{
+font-size: medium;
+text-align: start;
+}
+
+.search-text{
+font-size: small;
+color: #888;
+}
+
+.search-link{
+  color: rgb(241, 241, 150);
+  text-align: right;
+  display: inline-flex;
+}
+
+.search-link:hover{
+  color: lightseagreen;
 }

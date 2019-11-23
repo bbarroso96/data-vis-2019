@@ -19,7 +19,7 @@
       <!-- Create a div where the graph will take place -->
       <div id="my_dataviz"></div>
       <div
-        class="card text-white bg-secondary mb-3"
+        class="card bg-light bg-secondary mb-3"
         style="margin: 0 20px 0 10px ; min-width: 300px"
       >
         <div class="card-header">
@@ -317,31 +317,32 @@
       }
 
       function handleMouseClick(d) {
+        var variationId = "positive";
+        var variationSymbol = "";
+        if (d.variation >= 0) {
+          variationId = "positive-variation";
+          variationSymbol = "+";
+        } else {
+          variationId = "negative-variation";
+        }
         document.getElementById(
           "card-header-text"
         ).innerHTML = `<p>${d.date.toDateString()}`;
-        document.getElementById(
-          "card-text"
-        ).innerHTML = `<p> <span class="card-detail">Data :</span> ${d.date.toDateString()}
-                    <br> <span class="card-detail">Pontuação Ibovespa :</span> ${
-                      d.last
-                    }
-                    <br> <span class="card-detail">Variação Diária :</span> ${
-                      d.variation
-                    }
+        document.getElementById("card-text").innerHTML = `<p style="margin-bottom:0.85em;"> 
+                    Pontuação Ibovespa : <span id="data-last-punctuation" class="card-detail">${d.last}</span>
+                    <br> Variação Diária : <span id="${variationId}" class="card-detail">${variationSymbol}${d.variation} %</span>
+                    
                     </p>
                     `;
 
-        search("ibovespa after:2019-03-21 before:2019-03-23", d.date).then(
-          function(jsonParsed) {
-            console.log(jsonParsed);
-            document.getElementById(
-              "card-text"
-            ).innerHTML += `<p></p>
-                            <p>${jsonParsed.items[0].title}</p>
-                            <p> Link : ${jsonParsed.items[0].link}</p>`;
-          }
-        );
+        search("ibovespa", d.date).then(function(jsonParsed) {
+          console.log(jsonParsed);
+          document.getElementById("card-text").innerHTML += `<div id  ="search-item">
+                            <p class="search-title">${jsonParsed.items[0].pagemap.metatags[0]["og:title"]}</p>
+                            <p class="search-text">${jsonParsed.items[0].pagemap.metatags[0]["twitter:description"]}</p>
+                            <a class="search-link" href="${jsonParsed.items[0].link}">${jsonParsed.items[0].pagemap.metatags[0]["og:site_name"]}</a>
+                            </div>`;
+        });
       }
     </script>
   </body>
