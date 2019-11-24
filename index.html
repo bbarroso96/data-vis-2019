@@ -60,6 +60,7 @@
         width = 1200 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
       //GLOBAL VARiABLES
+      var DEBUG_FLAG = true;
       var MAXDATAPOINTS = 20;
       var dotRadius = 6;
       var xScale;
@@ -331,11 +332,10 @@
         document.getElementById("card-text").innerHTML = `<p style="margin-bottom:0.85em;"> 
                     Pontuação Ibovespa : <span id="data-last-punctuation" class="card-detail">${d.last}</span>
                     <br> Variação Diária : <span id="${variationId}" class="card-detail">${variationSymbol}${d.variation} %</span>
-                    
                     </p>
                     `;
 
-        search("ibovespa", d.date).then(function(jsonParsed) {
+        search("ibovespa", d.date, DEBUG_FLAG).then(function(jsonParsed) {
           console.log(jsonParsed);
           document.getElementById("card-text").innerHTML += `<div id  ="search-item">
                             <p class="search-title">${jsonParsed.items[0].pagemap.metatags[0]["og:title"]}</p>

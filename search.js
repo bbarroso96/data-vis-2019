@@ -24,20 +24,27 @@
   xhttp.send();
 } */
 
-async function search(querryItem, date) {
+async function search(querryItem, date, DEBUG_FLAG) {
   var afterDate = new Date(date);
   var beforeDate = new Date(date);
   afterDate.setDate(afterDate.getDate() - 1);
-  beforeDate.setDate(beforeDate.getDate() +1 );
+  beforeDate.setDate(beforeDate.getDate() + 1);
   var afterDateString = afterDate.toISOString();
-  afterDateString = afterDateString.substring(0,afterDateString.indexOf('T'));
+  afterDateString = afterDateString.substring(0, afterDateString.indexOf("T"));
   var beforeDateString = beforeDate.toISOString();
-  beforeDateString = beforeDateString.substring(0,beforeDateString.indexOf('T'));
+  beforeDateString = beforeDateString.substring(
+    0,
+    beforeDateString.indexOf("T")
+  );
 
   var url = `https://cors-anywhere.herokuapp.com/https://www.googleapis.com/customsearch/v1?q=${querryItem} after:${afterDateString} before:${beforeDateString}&cx=008344922520587658943%3Akunfp2xcyyo&key=AIzaSyDMq1Fk8N8GORYadfLGY_bBQTYbjE5-rKw`;
-
-  const response = await fetch(url);
+  if (DEBUG_FLAG == true) {
+    const response = await fetch(url);
+  } else {
+    const response = await fetch(url);
+  }
+  
   const jsonParsed = await response.json();
+
   return jsonParsed;
 }
-
