@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
     <script src="search.js"></script>
     <h1 id="page-title">
       Data-Vis 2019-2 | Grupo: Anor Neto e Bruno Barroso aka AB Corp
@@ -284,7 +285,6 @@
                 d3.select("#line_2").remove();
               });
 
-              console.log(document.getElementById("option-1").checked);
             }
           );
         }
@@ -318,6 +318,7 @@
       }
 
       function handleMouseClick(d) {
+        const selectedDate = d.date;
         var variationId = "positive";
         var variationSymbol = "";
         if (d.variation >= 0) {
@@ -331,24 +332,46 @@
         ).innerHTML = `<p>${d.date.toDateString()}`;
         document.getElementById(
           "card-text"
-        ).innerHTML = `<p style="margin-bottom:10px;"> 
+        ).innerHTML = `<p style="margin-bottom:10px;">
                     Pontuação Ibovespa : <span id="data-last-punctuation" class="card-detail">${d.last}</span>
-                    <br> Variação Diária : <span id="${variationId}" class="card-detail">${variationSymbol}${d.variation} %</span>
+                    <br> Variação Diária : <span id="${variationId}" class="card-detail">${variationSymbol}${d.variation}%</span>
                     </p>
                     `;
 
         search("ibovespa", d.date, DEBUG_FLAG).then(function(jsonParsed) {
+          console.log('Parsed Json : \n');
           console.log(jsonParsed);
+
+          if (DEBUG_FLAG == true)
+            document.getElementById("card-text").innerHTML +=
+              '<p style="color:red;font-weight:600;text-align:center">DEBUG MODE IS ACTIVE</p>';
+
           for (i = 0; i <= 3; i++) {
             const articleTitle =
               jsonParsed.items[i].pagemap.metatags[0]["og:title"];
             const articleDescription =
-              jsonParsed.items[i].pagemap.metatags[0]["twitter:description"];
+              jsonParsed.items[i].pagemap.metatags[0]["twitter:description"] ||
+              jsonParsed.items[i].snippet;
             const articleLink = jsonParsed.items[i].link;
             const siteName =
               jsonParsed.items[i].pagemap.metatags[0]["og:site_name"];
+
+            // we need the following regex search because some sites have diferente tags for the published date
+            const regex = /\d{4}-\d{2}-\d{2}T/g;
+            const metaTagsMap = jsonParsed.items[i].pagemap.metatags[0];
+            var metaTagsDateKey;
+            for (const [key, value] of Object.entries(metaTagsMap)) {
+              if (value.match(regex)) {
+                metaTagsDateKey = key;
+                break;
+              }
+            }
+            // end of regex search
             var publishedTime =
-              jsonParsed.items[i].pagemap.metatags[0]["article:published_time"];
+              jsonParsed.items[i].pagemap.metatags[0][metaTagsDateKey] ||
+              d.date.toISOString();
+
+            //cuts time out of date string
             publishedTime = publishedTime.substring(
               0,
               publishedTime.indexOf("T")
