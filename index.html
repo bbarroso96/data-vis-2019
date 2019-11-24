@@ -24,19 +24,19 @@
       >
         <div class="card-header">
           <h5 id="card-header-text" style="margin-bottom: 0px">
-            Trabalhador do Brasil
+            Data-Vis 2019/2
           </h5>
         </div>
         <div id="card-text" class="card-body">
-          <!--           <div id="card-title-text">
-            <p>Bruno PLACEHOLDER</p>
-          </div> -->
-          <p>
-            O jovem bruno é um exemplo de trablhador do Brasil.<br />
-            Ele gira a economia e o mercado financeiro
+          <p align="”justify”">
+            A instabilidade e as recentes mudanças no cenário político
+            brasileiro tem um impacto direito na economia do páis. <br />
+            Logo, este trabalho tem como objetivo linkar as maiores variações
+            diárias no índice <span style="font-weight: bold;"> Ibovespa</span>
+            com as notícias ocorridas tanto a âmbito nacional quanto mundial.
           </p>
         </div>
-        <div id="card-search"></div>
+        <div id="world-cloud"></div>
       </div>
     </div>
     <div id="checkbox-container">
@@ -329,7 +329,9 @@
         document.getElementById(
           "card-header-text"
         ).innerHTML = `<p>${d.date.toDateString()}`;
-        document.getElementById("card-text").innerHTML = `<p style="margin-bottom:0.85em;"> 
+        document.getElementById(
+          "card-text"
+        ).innerHTML = `<p style="margin-bottom:10px;"> 
                     Pontuação Ibovespa : <span id="data-last-punctuation" class="card-detail">${d.last}</span>
                     <br> Variação Diária : <span id="${variationId}" class="card-detail">${variationSymbol}${d.variation} %</span>
                     </p>
@@ -337,11 +339,34 @@
 
         search("ibovespa", d.date, DEBUG_FLAG).then(function(jsonParsed) {
           console.log(jsonParsed);
-          document.getElementById("card-text").innerHTML += `<div id  ="search-item">
-                            <p class="search-title">${jsonParsed.items[0].pagemap.metatags[0]["og:title"]}</p>
-                            <p class="search-text">${jsonParsed.items[0].pagemap.metatags[0]["twitter:description"]}</p>
-                            <a class="search-link" href="${jsonParsed.items[0].link}">${jsonParsed.items[0].pagemap.metatags[0]["og:site_name"]}</a>
+          for (i = 0; i <= 3; i++) {
+            const articleTitle =
+              jsonParsed.items[i].pagemap.metatags[0]["og:title"];
+            const articleDescription =
+              jsonParsed.items[i].pagemap.metatags[0]["twitter:description"];
+            const articleLink = jsonParsed.items[i].link;
+            const siteName =
+              jsonParsed.items[i].pagemap.metatags[0]["og:site_name"];
+            var publishedTime =
+              jsonParsed.items[i].pagemap.metatags[0]["article:published_time"];
+            publishedTime = publishedTime.substring(
+              0,
+              publishedTime.indexOf("T")
+            );
+
+            document.getElementById(
+              "card-text"
+            ).innerHTML += `<div id  ="search-item">
+                            <p class="search-title">${articleTitle}</p>
+                            <p class="search-text">${articleDescription}</p>
+                            <table WIDTH=100% border=0 cellspacing=0 cellpadding=2>
+                              <tr>
+                                <td><div style="text-align: left;">${publishedTime}</div></td>
+                                <td><div style="text-align: right;"><a class="search-link" href="${articleLink}">${siteName}</a></div></td>
+                              </tr>
+                            </table>
                             </div>`;
+          }
         });
       }
     </script>

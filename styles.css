@@ -6,7 +6,7 @@ body {
   background-color: #1a1a1a;
 }
 
-p{
+p {
   margin-bottom: 0;
 }
 
@@ -33,7 +33,6 @@ p{
   stroke-width: 1.5;
   /*stroke-dasharray: 1px;*/
 }
-
 
 #line {
   fill: none;
@@ -75,12 +74,15 @@ p{
   margin: 0;
 }
 
-
-.card-detail{
+.card-detail {
   font-weight: 600;
 }
 
-#data-last-punctuation{
+#card-text{
+  padding-top: 15px;
+}
+
+#data-last-punctuation {
   color: lightsteelblue;
 }
 
@@ -88,32 +90,30 @@ p{
   color: lightgreen;
 }
 
-#negative-variation{
+#negative-variation {
   color: lightsalmon;
 }
 
-#search-item{
-  border-top: 1px solid rgba(255,255,255,0.325);
-  border-bottom: 1px solid rgba(255,255,255,0.325);
-
+#search-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.325);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.325);
 }
 
-.search-title{
-font-size: medium;
-text-align: start;
+.search-title {
+  font-size: medium;
+  text-align: center;
 }
 
-.search-text{
-font-size: small;
-color: #888;
+.search-text {
+  font-size: small;
+  text-align: left;
+  color: #888;
 }
 
-.search-link{
+.search-link {
   color: rgb(241, 241, 150);
-  text-align: right;
-  display: inline-flex;
 }
 
-.search-link:hover{
+.search-link:hover {
   color: lightseagreen;
 }

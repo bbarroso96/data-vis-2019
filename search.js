@@ -25,6 +25,7 @@
 } */
 
 async function search(querryItem, date, DEBUG_FLAG) {
+  console.log(DEBUG_FLAG);
   var afterDate = new Date(date);
   var beforeDate = new Date(date);
   afterDate.setDate(afterDate.getDate() - 1);
@@ -39,12 +40,15 @@ async function search(querryItem, date, DEBUG_FLAG) {
 
   var url = `https://cors-anywhere.herokuapp.com/https://www.googleapis.com/customsearch/v1?q=${querryItem} after:${afterDateString} before:${beforeDateString}&cx=008344922520587658943%3Akunfp2xcyyo&key=AIzaSyDMq1Fk8N8GORYadfLGY_bBQTYbjE5-rKw`;
   if (DEBUG_FLAG == true) {
-    const response = await fetch(url);
+    console.log("AM I HERE?");
+    const response = await fetch(
+      "https://raw.githubusercontent.com/anorneto/data-vis-2019/master/data/api_mock.json"
+    );
+    const jsonParsed = await response.json();
+    return jsonParsed;
   } else {
     const response = await fetch(url);
+    const jsonParsed = await response.json();
+    return jsonParsed;
   }
-  
-  const jsonParsed = await response.json();
-
-  return jsonParsed;
 }
